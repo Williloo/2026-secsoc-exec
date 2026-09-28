@@ -1,15 +1,16 @@
+import { spawnGoose } from "goose";
+
+const goose = spawnGoose({ mode: "avoid" });
+
 const popup = document.getElementById("popup");
 if (popup) {
     setTimeout(() => {
         popup.showModal();
         popup.focus();
-    }, 5000);
+    }, 500);
 }
 
 (async () => {
-    const el = document.getElementById("ip");
-    if (!el) return;
-
     const sources = [
         { url: "https://ifconfig.me/ip", parse: (t) => t.trim() },
         { url: "https://api.ipify.org?format=json", parse: (t) => JSON.parse(t).ip },
@@ -21,15 +22,13 @@ if (popup) {
             if (!res.ok) continue;
             const ip = parse(await res.text());
             if (ip) {
-                el.textContent = ip;
+                goose.carry(ip);
                 return;
             }
         } catch {
             // try the next source
         }
     }
-
-    el.textContent = "unavailable";
 })();
 
 (() => {

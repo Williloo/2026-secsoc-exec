@@ -1,0 +1,8 @@
+{
+    "name": "goose",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "exports": "./index.js",
+    "files": ["index.js", "sprite.png"]
+}

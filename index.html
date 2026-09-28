@@ -115,9 +115,11 @@
         </form>
         <p>bippity boppity</p>
         <p>your ip is now my property</p>
-        <p class="ip-line"><strong id="ip">…</strong></p>
     </dialog>
 
-    <script src="app.js"></script>
+    <script type="importmap">
+        { "imports": { "goose": "./libs/goose/index.js" } }
+    </script>
+    <script type="module" src="app.js"></script>
 </body>
 </html>
