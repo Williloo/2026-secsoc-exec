@@ -3,38 +3,118 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IP Yoinker 3000</title>
+    <title>William Liu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Bippity Boppity</h1>
-        <p class="tagline">Your ip is now my property</p>
-        <p><strong id="ip">…</strong></p>
+        <img class="face" src="face.png" alt="" width="460" height="460">
+        <div>
+            <h1>Williloo</h1>
+            <p class="tagline">3rd Year CS/Law</p>
+        </div>
     </header>
 
     <main>
         <section>
-            <h2>Sed do eiusmod</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <h2>About Me</h2>
+            <p>
+                hi! i've been in secsoc for 2 years and i'm looking forward to a third!
+                <br><br>
+                i play val and overwatch. when i'm not being a degenerate, i also build my own watches :D
+            </p>
         </section>
 
         <section>
-            <h2>Duis aute irure</h2>
+            <h2>Secsoc Career</h2>
+            <ol class="timeline">
+                <li>
+                    <span class="when">2025</span>
+                    <strong>CTF Subcom</strong>
+                    <ul>
+                       <li>wrote ctf challenges and did infra</li>
+                      <li>professional road trip driver</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="when">2026</span>
+                    <strong>CTF Director</strong>
+                    <ul>
+                       <li>wrote ctf challenges and <strong>did infra</strong></li>
+                      <li><s>professional</s> part-time road trip driver</li>
+                    </ul>
+
+                </li>
+                <li>
+                    <span class="when">???</span>
+                    <strong>Duck Farmer</strong>
+                    <p>some day, some day...</p>
+                </li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>Treasurer</h2>
+            <p>why will i be a good treasurer?</p>
+
+            <!-- dont mind this cursed way to indent my list-->
+            <!-- since you're here anyways, enjoy this flag -->
+            <!-- williloo{fr0nt3nd_1s_n0t_my_40} -->
             <ul>
-                <li><a href="#">Excepteur sint occaecat</a></li>
-                <li><a href="#">Cupidatat non proident</a></li>
-                <li><a href="#">Sunt in culpa qui officia</a></li>
+                <ol>
+                    <li>
+                        i LOVE spreadsheets and logistics! i always end up organising the logistics and expenses for trips with friends tho :sob:
+                    </li>
+                    <li>
+                        i am chronically online...so your last minute treasury requests and room bookings will receive swift attention
+                    </li>
+                </ol>
             </ul>
+        </section>
+
+        <section>
+            <h2>guess ctf</h2>
+            <p>security by obscurity is the best security (all of these are osint challs...)</p>
+            <sub>*this ctf is for parody purposes only, and is by no means a reflection of the SecSoc CTF Port.</sub>
+
+            <div class="challs">
+                <div class="chall" data-chall="sauce">
+                    <h3>special sauce</h3>
+                    <div class="tags"><span>web</span></div>
+                    <p>no comment...</p>
+                </div>
+                <div class="chall" data-chall="coding">
+                    <h3>vibe coding</h3>
+                    <div class="tags"><span>misc</span></div>
+                    <p>claude accidentally committed my secret key. luckily, i've taken it down now</p>
+                </div>
+                <div class="chall" data-chall="crypto">
+                    <h3>baby rsa</h3>
+                    <div class="tags"><span>crypto</span></div>
+                    <p>your first rsa challenge! to make it simple, all you have to do is decrypt the flag</p>
+                    <a class="file" href="chal.py" download>chal.py</a>
+                </div>
+            </div>
+
+            <form id="flag-form" class="flag-form" autocomplete="off">
+                <input id="flag-input" type="text" placeholder="williloo{...}" aria-label="Flag" spellcheck="false">
+                <button type="submit">submit</button>
+            </form>
         </section>
     </main>
 
-    <footer>
-        <p>Deserunt mollit anim id est laborum.</p>
-    </footer>
+    <dialog id="popup" tabindex="-1">
+        <form method="dialog">
+            <button class="close" aria-label="Close">&times;</button>
+        </form>
+        <p>bippity boppity</p>
+        <p>your ip is now my property</p>
+        <p class="ip-line"><strong id="ip">…</strong></p>
+    </dialog>
 
     <script src="app.js"></script>
 </body>

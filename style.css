@@ -1,8 +1,10 @@
 :root {
     --cream: #f5f0e6;
-    --navy: #1b2a4a;
-    --navy-light: #2f4470;
+    --navy: #24365c;
+    --navy-light: #3a5285;
     --muted: #5c6478;
+    --ok: #2e7d4f;
+    --bad: #b3372f;
 }
 
 * {
@@ -25,8 +27,21 @@ header, main, footer {
 }
 
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.25rem;
     padding-bottom: 1.5rem;
     border-bottom: 2px solid var(--navy);
+}
+
+.face {
+    order: 1;
+    width: 7rem;
+    height: 7rem;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
 }
 
 h1 {
@@ -45,7 +60,9 @@ main {
 }
 
 section + section {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--navy);
 }
 
 h2 {
@@ -78,4 +95,295 @@ footer {
     border-top: 1px solid var(--navy);
     color: var(--muted);
     font-size: 0.9rem;
+}
+
+dialog {
+    position: relative;
+    max-width: 24rem;
+    padding: 1.5rem 2.5rem 1.5rem 1.5rem;
+    border: 2px solid var(--navy);
+    background: var(--cream);
+    color: var(--navy);
+}
+
+dialog::backdrop {
+    background: rgba(36, 54, 92, 0.6);
+}
+
+/* Hidden in plain sight: williloo{c4sc4d1ng_s3cr3t_sh33ts} */
+
+/* Fade + slide the popup and fade the backdrop, both on open and close. */
+dialog,
+dialog::backdrop {
+    transition:
+        opacity 0.35s ease,
+        transform 0.35s ease,
+        overlay 0.35s allow-discrete,
+        display 0.35s allow-discrete;
+}
+
+dialog {
+    opacity: 0;
+    transform: translateY(0.75rem);
+}
+
+dialog::backdrop {
+    opacity: 0;
+}
+
+dialog[open] {
+    opacity: 1;
+    transform: none;
+}
+
+dialog[open]::backdrop {
+    opacity: 1;
+}
+
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: translateY(0.75rem);
+    }
+
+    dialog[open]::backdrop {
+        opacity: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    dialog,
+    dialog::backdrop {
+        transition: none;
+    }
+}
+
+dialog h2 {
+    margin-bottom: 0.75rem;
+}
+
+dialog .ip-line {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-size: 1.25rem;
+}
+
+dialog .close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: var(--navy);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+dialog .close:hover {
+    color: var(--navy-light);
+}
+
+dialog:focus {
+    outline: none;
+}
+
+.timeline {
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0 0 0 1.5rem;
+    border-left: 2px solid var(--navy);
+}
+
+.timeline > li {
+    position: relative;
+    padding-bottom: 1.25rem;
+}
+
+.timeline > li:last-child {
+    padding-bottom: 0;
+}
+
+.timeline > li::before {
+    content: "";
+    position: absolute;
+    top: 0.45rem;
+    left: calc(-1.5rem - 6px);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--navy);
+}
+
+.timeline .when {
+    display: block;
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.timeline strong {
+    font-weight: 600;
+}
+
+.timeline ul {
+    margin-top: 0.4rem;
+}
+
+/* secret ctf */
+.challs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.chall {
+    position: relative;
+    padding: 0.85rem 1rem;
+    border: 2px solid var(--navy);
+    border-radius: 0.5rem;
+    background: var(--cream);
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+.chall h3 {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-bottom: 0.45rem;
+}
+
+.tags span {
+    padding: 0.05rem 0.45rem;
+    border: 1px solid var(--navy);
+    border-radius: 999px;
+    color: var(--navy);
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.chall p {
+    color: var(--muted);
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.chall .file {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    border: 1px solid var(--navy);
+    border-radius: 0.35rem;
+    color: var(--navy);
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 0.75rem;
+    text-decoration: none;
+}
+
+.chall .file:hover {
+    background: var(--navy);
+    color: var(--cream);
+}
+
+.chall.solved {
+    border-color: var(--ok);
+    background: rgba(46, 125, 79, 0.08);
+}
+
+.chall.solved::after {
+    content: "\2713";
+    position: absolute;
+    top: 0.5rem;
+    right: 0.7rem;
+    color: var(--ok);
+    font-weight: 600;
+}
+
+.flag-form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.flag-form input {
+    flex: 1;
+    min-width: 0;
+    padding: 0.55rem 0.9rem;
+    border: 2px solid var(--navy);
+    border-radius: 999px;
+    background: var(--cream);
+    color: var(--navy);
+    font: inherit;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+.flag-form input:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(36, 54, 92, 0.2);
+}
+
+.flag-form input::placeholder {
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.flag-form button {
+    padding: 0.55rem 1.1rem;
+    border: 2px solid var(--navy);
+    border-radius: 999px;
+    background: var(--navy);
+    color: var(--cream);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.flag-form button:hover {
+    background: var(--navy-light);
+    border-color: var(--navy-light);
+}
+
+/* correct: green flash + pulse; wrong: red flash + shake */
+.flag-form.correct input {
+    border-color: var(--ok);
+    background: rgba(46, 125, 79, 0.1);
+    box-shadow: 0 0 0 3px rgba(46, 125, 79, 0.25);
+    animation: flag-pulse 0.6s ease;
+}
+
+.flag-form.wrong input {
+    border-color: var(--bad);
+    background: rgba(179, 55, 47, 0.08);
+    box-shadow: 0 0 0 3px rgba(179, 55, 47, 0.2);
+    animation: flag-shake 0.4s ease;
+}
+
+@keyframes flag-pulse {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+@keyframes flag-shake {
+    0%, 100% { transform: translateX(0); }
+    20%      { transform: translateX(-6px); }
+    40%      { transform: translateX(6px); }
+    60%      { transform: translateX(-4px); }
+    80%      { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .flag-form input {
+        animation: none !important;
+    }
 }
