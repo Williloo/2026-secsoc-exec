@@ -1,16 +1,6 @@
 import { spawnGoose } from "goose";
 
-const goose = spawnGoose({ mode: "avoid" });
-
-const popup = document.getElementById("popup");
-if (popup) {
-    setTimeout(() => {
-        popup.showModal();
-        popup.focus();
-    }, 500);
-}
-
-(async () => {
+const ip = (async () => {
     const sources = [
         { url: "https://ifconfig.me/ip", parse: (t) => t.trim() },
         { url: "https://api.ipify.org?format=json", parse: (t) => JSON.parse(t).ip },
@@ -21,15 +11,30 @@ if (popup) {
             const res = await fetch(url, { cache: "no-store" });
             if (!res.ok) continue;
             const ip = parse(await res.text());
-            if (ip) {
-                goose.carry(ip);
-                return;
-            }
+            if (ip) return ip;
         } catch {
             // try the next source
         }
     }
+    return null;
 })();
+
+const releaseGoose = async () => {
+    const goose = spawnGoose({ mode: "avoid" });
+    const found = await ip;
+    if (found) goose.carry(found);
+};
+
+const popup = document.getElementById("popup");
+if (popup) {
+    popup.addEventListener("close", releaseGoose, { once: true });
+    setTimeout(() => {
+        popup.showModal();
+        popup.focus();
+    }, 500);
+} else {
+    releaseGoose();
+}
 
 (() => {
     const form = document.getElementById("flag-form");
